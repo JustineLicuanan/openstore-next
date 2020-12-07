@@ -1,5 +1,6 @@
 dependencies:
   '@material-ui/core': 4.11.2_react-dom@17.0.1+react@17.0.1
+  '@material-ui/icons': 4.11.2_f4b58722d877c15467e3e7d6668ec53d
   next: 10.0.3_react-dom@17.0.1+react@17.0.1
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
@@ -141,6 +142,25 @@ packages:
         optional: true
     resolution:
       integrity: sha512-/D1+AQQeYX/WhT/FUk78UCRj8ch/RCglsQLYujYTIqPSJlwZHKcvHidNeVhODXeApojeXjkl0tWdk5C9ofwOkQ==
+  /@material-ui/icons/4.11.2_f4b58722d877c15467e3e7d6668ec53d:
+    dependencies:
+      '@babel/runtime': 7.12.5
+      '@material-ui/core': 4.11.2_react-dom@17.0.1+react@17.0.1
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      '@material-ui/core': ^4.0.0
+      '@types/react': ^16.8.6 || ^17.0.0
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    resolution:
+      integrity: sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
   /@material-ui/styles/4.11.2_react-dom@17.0.1+react@17.0.1:
     dependencies:
       '@babel/runtime': 7.12.5
@@ -4345,6 +4365,7 @@ packages:
       integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 specifiers:
   '@material-ui/core': ^4.11.2
+  '@material-ui/icons': ^4.11.2
   next: 10.0.3
   react: 17.0.1
   react-dom: 17.0.1

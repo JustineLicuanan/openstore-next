@@ -1,16 +1,11 @@
 import Head from 'next/head';
-import { Typography } from '@material-ui/core';
 
 const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>Next App</title>
+				<title>OpenStore</title>
 			</Head>
-
-			<Typography variant='h2' component='h1'>
-				Next App
-			</Typography>
 		</>
 	);
 };
