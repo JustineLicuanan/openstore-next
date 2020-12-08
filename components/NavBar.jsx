@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ButtonAppBar() {
+const ButtonAppBar = () => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -89,4 +89,6 @@ export default function ButtonAppBar() {
 			</AppBar>
 		</div>
 	);
-}
+};
+
+export default ButtonAppBar;
