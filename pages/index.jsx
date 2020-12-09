@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import ProductList from '../src/index/ProductList';
 
-const Home = ({ productData }) => {
+const Home = ({ productsData }) => {
 	return (
 		<>
 			<Head>
 				<title>OpenStore | Your Favorite Store in the Web</title>
 			</Head>
-			<ProductList productData={productData} />
+			<ProductList productsData={productsData} />
 		</>
 	);
 };
@@ -15,8 +15,8 @@ const Home = ({ productData }) => {
 export const getServerSideProps = async () => {
 	try {
 		const res = await fetch('https://fakestoreapi.com/products');
-		const productData = await res.json();
-		return { props: { productData } };
+		const productsData = await res.json();
+		return { props: { productsData } };
 	} catch (err) {
 		return { notFound: true };
 	}
