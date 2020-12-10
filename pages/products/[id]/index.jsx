@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ProductItem from './components/ProductItem';
+import ProductItem from '../../../src/products/ProductItem';
 
 const Products = ({ productData, relatedProductsData }) => {
 	return (
@@ -15,7 +15,16 @@ const Products = ({ productData, relatedProductsData }) => {
 	);
 };
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticPaths = async () => {
+	const res = await fetch('https://fakestoreapi.com/products');
+	const productsData = await res.json();
+	return {
+		paths: productsData.map((product) => product.id),
+		fallback: false,
+	};
+};
+
+export const getStaticProps = async ({ params }) => {
 	try {
 		const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
 		const productData = await res.json();

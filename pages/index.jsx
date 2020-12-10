@@ -12,7 +12,7 @@ const Home = ({ productsData }) => {
 	);
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	try {
 		const res = await fetch('https://fakestoreapi.com/products');
 		const productsData = await res.json();

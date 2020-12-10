@@ -13,7 +13,7 @@ import {
 	CircularProgress,
 } from '@material-ui/core';
 import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons';
-import ProductCard from '../../../../components/ProductCard';
+import ProductCard from '../../components/ProductCard';
 
 const useStyles = makeStyles((theme) => ({
 	productGrid: {
