@@ -1,5 +1,7 @@
 import Head from 'next/head';
+import { Container } from '@material-ui/core';
 import ProductList from '../src/index/ProductList';
+import CategoryTabs from '../src/index/CategoryTabs';
 
 const Home = ({ productsData, productCategories }) => {
 	return (
@@ -7,10 +9,10 @@ const Home = ({ productsData, productCategories }) => {
 			<Head>
 				<title>OpenStore | Your Favorite Store in the Web</title>
 			</Head>
-			<ProductList
-				productsData={productsData}
-				productCategories={productCategories}
-			/>
+			<Container>
+				<CategoryTabs productCategories={productCategories} />
+				<ProductList productsData={productsData} />
+			</Container>
 		</>
 	);
 };

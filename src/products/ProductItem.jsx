@@ -8,7 +8,6 @@ import {
 	Typography,
 	Chip,
 	Button,
-	IconButton,
 	Backdrop,
 	CircularProgress,
 } from '@material-ui/core';
@@ -16,7 +15,7 @@ import {
 	AddShoppingCart as AddShoppingCartIcon,
 	ArrowBack as ArrowBackIcon,
 } from '@material-ui/icons';
-import ProductCard from '../../components/ProductCard';
+import RelatedProducts from './RelatedProducts';
 
 const useStyles = makeStyles((theme) => ({
 	productGrid: {
@@ -34,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
 	goBackBtn: {
 		margin: theme.spacing(1),
 	},
-	relatedProductsLabel: {
-		marginTop: theme.spacing(3),
-	},
 	backdrop: {
 		zIndex: theme.zIndex.drawer + 1,
 		color: '#fff',
@@ -46,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
 const ProductItem = ({ productData, relatedProductsData }) => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
-	const handleToggle = () => {
-		setOpen(!open);
-	};
 
 	return (
 		<Container>
@@ -96,20 +89,23 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 							className={classes.categoryChip}
 						/>
 					</Box>
-					<IconButton color='primary' className={classes.addCartBtn}>
-						<AddShoppingCartIcon />
-					</IconButton>
-					<Button size='small' color='primary'>
+					<Button
+						color='primary'
+						className={classes.addCartBtn}
+						startIcon={<AddShoppingCartIcon />}
+					>
+						Add to Cart
+					</Button>
+					<Button variant='contained' color='primary'>
 						Buy Now
 					</Button>
 				</Grid>
 			</Grid>
 			<Link href='/'>
 				<Button
-					variant='contained'
 					color='primary'
 					className={classes.goBackBtn}
-					onClick={handleToggle}
+					onClick={() => setOpen(true)}
 					startIcon={<ArrowBackIcon />}
 				>
 					Home
@@ -118,25 +114,10 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 			<Backdrop className={classes.backdrop} open={open}>
 				<CircularProgress color='inherit' />
 			</Backdrop>
-			<Typography
-				variant='h4'
-				component='h3'
-				className={classes.relatedProductsLabel}
-			>
-				Related Products
-			</Typography>
-			<Box
-				display='flex'
-				justifyContent='center'
-				alignItems='flex-start'
-				flexWrap='wrap'
-				my={1}
-			>
-				{relatedProductsData.map((product) => {
-					if (product.id !== productData.id)
-						return <ProductCard product={product} key={product.id} />;
-				})}
-			</Box>
+			<RelatedProducts
+				productId={productData.id}
+				relatedProductsData={relatedProductsData}
+			/>
 		</Container>
 	);
 };

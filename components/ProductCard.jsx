@@ -36,14 +36,11 @@ const useStyles = makeStyles((theme) => ({
 const ProductCard = ({ product }) => {
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
-	const handleToggle = () => {
-		setOpen(!open);
-	};
 
 	return (
 		<Card className={classes.productCard}>
 			<Link href={`/products/${product.id}`}>
-				<CardActionArea onClick={handleToggle}>
+				<CardActionArea onClick={() => setOpen(true)}>
 					<CardMedia
 						component='img'
 						alt={product.title}
@@ -92,9 +89,7 @@ const ProductCard = ({ product }) => {
 				<IconButton color='primary' className={classes.addCartBtn}>
 					<AddShoppingCartIcon />
 				</IconButton>
-				<Button size='small' color='primary'>
-					Buy Now
-				</Button>
+				<Button color='primary'>Buy Now</Button>
 			</CardActions>
 		</Card>
 	);
