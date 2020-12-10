@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 		textTransform: 'capitalize',
 	},
 	addCartBtn: {
-		margin: `0 ${theme.spacing(1)}`,
+		margin: theme.spacing(0, 1),
 	},
 	backdrop: {
 		zIndex: theme.zIndex.drawer + 1,

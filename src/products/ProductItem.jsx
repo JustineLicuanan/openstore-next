@@ -12,12 +12,15 @@ import {
 	Backdrop,
 	CircularProgress,
 } from '@material-ui/core';
-import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons';
+import {
+	AddShoppingCart as AddShoppingCartIcon,
+	ArrowBack as ArrowBackIcon,
+} from '@material-ui/icons';
 import ProductCard from '../../components/ProductCard';
 
 const useStyles = makeStyles((theme) => ({
 	productGrid: {
-		margin: theme.spacing(1),
+		margin: theme.spacing(1, 0),
 	},
 	productImg: {
 		width: '100%',
@@ -26,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 		textTransform: 'capitalize',
 	},
 	addCartBtn: {
-		margin: `0 ${theme.spacing(1)}`,
+		margin: theme.spacing(0, 1),
 	},
 	goBackBtn: {
 		margin: theme.spacing(1),
@@ -52,7 +55,7 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 			<Grid
 				container
 				justify='center'
-				spacing={3}
+				spacing={1}
 				className={classes.productGrid}
 			>
 				<Grid item xs={12} sm={5}>
@@ -107,8 +110,9 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 					color='primary'
 					className={classes.goBackBtn}
 					onClick={handleToggle}
+					startIcon={<ArrowBackIcon />}
 				>
-					Go back
+					Home
 				</Button>
 			</Link>
 			<Backdrop className={classes.backdrop} open={open}>
@@ -121,21 +125,18 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 			>
 				Related Products
 			</Typography>
-			<Grid
-				container
-				justify='center'
-				spacing={3}
-				className={classes.productGrid}
+			<Box
+				display='flex'
+				justifyContent='center'
+				alignItems='flex-start'
+				flexWrap='wrap'
+				my={1}
 			>
 				{relatedProductsData.map((product) => {
 					if (product.id !== productData.id)
-						return (
-							<Grid item xs={12} sm={6} md={4} key={product.id}>
-								<ProductCard product={product} key={product.id} />
-							</Grid>
-						);
+						return <ProductCard product={product} key={product.id} />;
 				})}
-			</Grid>
+			</Box>
 		</Container>
 	);
 };

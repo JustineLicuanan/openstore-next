@@ -1,36 +1,38 @@
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Box, Typography } from '@material-ui/core';
+import { Container, Box, Tabs, Tab } from '@material-ui/core';
 import ProductCard from '../../components/ProductCard';
 
 const useStyles = makeStyles((theme) => ({
-	productCard: {
-		maxWidth: 345,
-		margin: theme.spacing(1),
-	},
-	categoryChip: {
-		textTransform: 'capitalize',
-	},
-	addCartBtn: {
-		margin: `0 ${theme.spacing(1)}`,
-	},
 	productsLabel: {
 		marginTop: theme.spacing(1),
 	},
 }));
 
-const ProductList = ({ productsData }) => {
+const ProductList = ({ productsData, productCategories }) => {
 	const classes = useStyles();
+	const [value, setValue] = useState(0);
+
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
 
 	return (
 		<Container>
-			<Typography
-				variant='h4'
-				component='h1'
-				align='center'
-				className={classes.productsLabel}
+			<Tabs
+				value={value}
+				onChange={handleChange}
+				indicatorColor='primary'
+				textColor='primary'
+				variant='scrollable'
+				scrollButtons='on'
+				aria-label='scrollable auto tabs'
 			>
-				All Products
-			</Typography>
+				<Tab label='All' />
+				{productCategories.map((category, i) => (
+					<Tab label={category} key={i} />
+				))}
+			</Tabs>
 			<Box
 				display='flex'
 				justifyContent='center'
