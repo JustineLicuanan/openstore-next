@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import ProductCard from '../../components/ProductCard';
+import ProductCard from './ProductCard';
 
 const ProductList = ({ productsData }) => {
 	return (

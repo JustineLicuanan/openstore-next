@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -8,8 +7,6 @@ import {
 	Typography,
 	Chip,
 	Button,
-	Backdrop,
-	CircularProgress,
 } from '@material-ui/core';
 import {
 	AddShoppingCart as AddShoppingCartIcon,
@@ -33,15 +30,10 @@ const useStyles = makeStyles((theme) => ({
 	goBackBtn: {
 		margin: theme.spacing(1),
 	},
-	backdrop: {
-		zIndex: theme.zIndex.drawer + 1,
-		color: '#fff',
-	},
 }));
 
 const ProductItem = ({ productData, relatedProductsData }) => {
 	const classes = useStyles();
-	const [open, setOpen] = useState(false);
 
 	return (
 		<Container>
@@ -81,13 +73,21 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 						{productData.description.trim()}
 					</Typography>
 					<Box mb={1}>
-						<Chip
-							label={productData.category}
-							clickable
-							color='secondary'
-							variant='outlined'
-							className={classes.categoryChip}
-						/>
+						<Link
+							href={`/products/category/${
+								!productData.category.includes(' ')
+									? productData.category
+									: productData.category.split(' ').join('-')
+							}`}
+						>
+							<Chip
+								label={productData.category}
+								clickable
+								color='secondary'
+								variant='outlined'
+								className={classes.categoryChip}
+							/>
+						</Link>
 					</Box>
 					<Button
 						color='primary'
@@ -105,15 +105,11 @@ const ProductItem = ({ productData, relatedProductsData }) => {
 				<Button
 					color='primary'
 					className={classes.goBackBtn}
-					onClick={() => setOpen(true)}
 					startIcon={<ArrowBackIcon />}
 				>
-					Home
+					Go Back
 				</Button>
 			</Link>
-			<Backdrop className={classes.backdrop} open={open}>
-				<CircularProgress color='inherit' />
-			</Backdrop>
 			<RelatedProducts
 				productId={productData.id}
 				relatedProductsData={relatedProductsData}

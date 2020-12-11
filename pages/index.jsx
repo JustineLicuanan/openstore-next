@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Container } from '@material-ui/core';
-import ProductList from '../src/index/ProductList';
-import CategoryTabs from '../src/index/CategoryTabs';
+import ProductList from '../components/ProductList';
+import CategoryTabs from '../components/CategoryTabs';
 
 const Home = ({ productsData, productCategories }) => {
 	return (
@@ -10,7 +10,10 @@ const Home = ({ productsData, productCategories }) => {
 				<title>OpenStore | Your Favorite Store in the Web</title>
 			</Head>
 			<Container>
-				<CategoryTabs productCategories={productCategories} />
+				<CategoryTabs
+					currentCategory={0}
+					productCategories={productCategories}
+				/>
 				<ProductList productsData={productsData} />
 			</Container>
 		</>
@@ -22,6 +25,7 @@ export const getStaticProps = async () => {
 		const res = await fetch('https://fakestoreapi.com/products');
 		const productsData = await res.json();
 		const productCategories = [];
+
 		productsData.forEach((product) => {
 			if (!productCategories.includes(product.category))
 				productCategories.push(product.category);

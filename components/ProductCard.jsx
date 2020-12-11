@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -11,8 +10,6 @@ import {
 	Typography,
 	IconButton,
 	Chip,
-	Backdrop,
-	CircularProgress,
 } from '@material-ui/core';
 import { AddShoppingCart as AddShoppingCartIcon } from '@material-ui/icons';
 
@@ -27,20 +24,15 @@ const useStyles = makeStyles((theme) => ({
 	addCartBtn: {
 		margin: theme.spacing(0, 1),
 	},
-	backdrop: {
-		zIndex: theme.zIndex.drawer + 1,
-		color: '#fff',
-	},
 }));
 
 const ProductCard = ({ product }) => {
 	const classes = useStyles();
-	const [open, setOpen] = useState(false);
 
 	return (
 		<Card className={classes.productCard}>
 			<Link href={`/products/${product.id}`}>
-				<CardActionArea onClick={() => setOpen(true)}>
+				<CardActionArea>
 					<CardMedia
 						component='img'
 						alt={product.title}
@@ -72,19 +64,24 @@ const ProductCard = ({ product }) => {
 								? `${product.description.trim().slice(0, 155).trim()}...`
 								: product.description.trim()}
 						</Typography>
-						<Chip
-							label={product.category}
-							clickable
-							color='secondary'
-							variant='outlined'
-							className={classes.categoryChip}
-						/>
+						<Link
+							href={`/products/category/${
+								!product.category.includes(' ')
+									? product.category
+									: product.category.split(' ').join('-')
+							}`}
+						>
+							<Chip
+								label={product.category}
+								clickable
+								color='secondary'
+								variant='outlined'
+								className={classes.categoryChip}
+							/>
+						</Link>
 					</CardContent>
 				</CardActionArea>
 			</Link>
-			<Backdrop className={classes.backdrop} open={open}>
-				<CircularProgress color='inherit' />
-			</Backdrop>
 			<CardActions>
 				<IconButton color='primary' className={classes.addCartBtn}>
 					<AddShoppingCartIcon />
